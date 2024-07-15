@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int m, n,a[20][40],sum=0,count2,count1;
+	cin >> n >> m;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			cin >> a[i][j];
+	for(int i=0;i<n;i++)
+		for (int j = 0; j < m; j++)
+		{
+			for (int k = 0; k < m-1; k++)
+			{
+				count1 = 1;
+				while (a[i][k + count1] == -1)
+				{
+						count1++;
+				}
+				if (a[i][k] == a[i][k + count1] && a[i][k] != -1)
+				{
+					sum += a[i][k];
+					cout <<"sum1:"<< sum << endl;
+					a[i][k] = -1;
+					a[i][k + count1] = -1;
+					
+				}
+			}
+			for (int l = 0; l < n - 1; l++)
+			{
+				count2 = 1;
+				while (a[l + count2][j] == -1)
+					count2++;
+				if (a[l][j] == a[l + count2][j] && a[l][j] != -1)
+				{
+					sum += a[l][j];
+					cout << "sum2:"<<sum << endl;
+					a[l][j] = -1;
+					a[l + count2][j ] = -1;
+					
+				}
+			}
+		}
+	cout << sum << endl;
+}
