@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int s, t, n, m, r, min = 1000000, count = 0, ct = 0;
+	int k = 1, sum = 0,min1=1000000;
+	int sum1 = 0;
+	int A[9][9], B[9][9];
+	int sum2 = 0;
+	cin >> s >> t >> n >> m >> r;
+	for (int i = 0; i < s; i++)
+		for (int j = 0; j < t; j++)
+		{
+			cin >> A[i][j];
+			sum2 += A[i][j];
+		}
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+		{
+			cin >> B[i][j];
+
+		}
+	int z, i, j;
+	int w;
+	for (int q = 0; q <= n - s; q++)
+		for (int h = 0; h <= m - t; h++)
+		{
+			int x = h, l = q;
+
+			for (i = q, w = 0; i < (s + l) && w < s; i++, w++)
+			{
+				for (j = h, z = 0; j < (t + x) && z < t; j++, z++)
+				{
+					if (A[w][z] != B[i][j])
+						sum++;
+
+				}
+
+			}
+
+			if (sum <= r)
+			{
+				for (i = q, w = 0; i < (s + l) && w < s; i++, w++)
+				{
+					for (j = h, z = 0; j < (t + x) && z < t; j++, z++)
+					{
+						sum1 += B[i][j];
+
+					}
+
+				}
+				k = fabs(sum2 - sum1);
+				if (k < min1)
+					min1 = k;
+				
+				count++;
+			}
+			sum = 0;
+			sum1 = 0;
+		}
+
+	
+	if (count == 0)
+		cout << 0 << endl << -1 << endl;
+	else
+		cout << count << endl << min1;
+}
