@@ -1,0 +1,59 @@
+#include <iostream>
+#include<algorithm>
+#include <stdlib.h>
+using namespace std;
+int main()
+{
+	int n, m, temp, temp1, temp2, temp3, Temp, Temp1, Temp2, Temp3,atemp;
+	int change[100][2];
+	int num[20][6] ;
+	cin >> n >> m;
+
+	for (int i = 0; i < m; i++)
+		for (int j = 0; j < 2; j++)
+		{
+			cin >> change[i][j];
+		}
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < 6; j++)
+		{
+			num[i][j] = j+1;
+		}
+	for (int i = 0; i < m; i++)
+	{
+		if (change[i][0] > 0 && change[i][1] > 0)
+		{
+			swap(num[change[i][0] - 1][0], num[change[i][1] - 1][0]);
+			swap(num[change[i][0] - 1][1], num[change[i][1] - 1][1]);
+			swap(num[change[i][0] - 1][2], num[change[i][1] - 1][2]);
+			swap(num[change[i][0] - 1][3], num[change[i][1] - 1][3]);
+			swap(num[change[i][0] - 1][4], num[change[i][1] - 1][4]);
+			swap(num[change[i][0] - 1][5], num[change[i][1] - 1][5]);
+		}
+		else if (change[i][1] == -1)
+		{
+			temp = num[change[i][0]-1][0];
+			temp1 = num[change[i][0]-1][3];
+			temp2 = num[change[i][0]-1][5];
+			temp3 = num[change[i][0]-1][2];
+			num[change[i][0]-1][0] = temp3;
+			num[change[i][0]-1][3] = temp;
+			num[change[i][0]-1][5] = temp1;
+			num[change[i][0]-1][2] = temp2;
+		}
+		else if (change[i][1] == -2)
+		{
+			Temp = num[change[i][0]-1][0];
+			Temp1 = num[change[i][0]-1][1]; 
+			Temp2 = num[change[i][0]-1][5]; 
+			Temp3 = num[change[i][0]-1][4]; 
+			num[change[i][0]-1][0] = Temp3;
+			num[change[i][0]-1][1] = Temp; 
+			num[change[i][0]-1][5] = Temp1;
+			num[change[i][0]-1][4] = Temp2;
+
+		}
+	}
+	for (int i = 0; i < n; i++)
+		cout << num[i][0];
+}
