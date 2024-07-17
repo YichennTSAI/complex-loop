@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int row, col, num[16][16], max[16] = {0},sum=0,count=0;
+	cin >> row >> col;
+	for (int i = 0; i < row; i++)
+		for (int j = 0; j < col; j++)
+		{
+			cin >> num[i][j];
+			if (num[i][j] > max[i])
+				 max[i]=num[i][j];
+		}
+	for (int i = 0; i < row; i++)
+	{
+		sum += max[i];
+	}
+	cout << sum << endl;
+	for (int i = 0; i < row; i++)
+	{
+		if (sum%max[i] == 0)
+		{
+			cout << max[i]<<endl;
+			count++;
+		}
+	}
+	if (count == 0)
+		cout << -1;
+}
