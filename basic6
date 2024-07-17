@@ -1,0 +1,31 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+int n[4] = { 0,0,0,1 };
+int o[4] = { 0,1,1,1 };
+int xo[4] = { 0,1,1,0 };
+
+int main()
+{
+	int a, b, c, i;
+	cin >> a >> b >> c;
+	if (a == 0 && b == 0)
+		i = 0;
+	else if (a == 0 && b != 0)
+		i = 1;
+	else if (a != 0 && b == 0)
+		i = 2;
+	else if (a != 0 && b != 0)
+		i = 3;
+
+	if (n[i] != c && o[i] != c && xo[i] != c)
+		cout << "impossible" << endl;
+	else {
+		if (n[i] == c)
+			cout << "and" << endl;
+		if (o[i] == c)
+			cout << "OR" << endl;
+		if (xo[i] == c)
+			cout << "XOR" << endl;
+	}
+}
